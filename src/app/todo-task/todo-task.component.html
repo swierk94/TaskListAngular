@@ -5,7 +5,7 @@
     Lista zadań
     <li *ngFor=" let task of taskList; let odd = odd" [ngClass]="{'odd-li': odd, 'last-li':taskList.length===1}">
         {{task}}
-        <button (click)="remove(task)">Usun</button>
+        <button type="button" class="btn btn-danger"(click)="remove(task)">Usun</button>
         <button type="button" class="btn btn-success" (click)="done(task)">Zrobione</button>
     </li>
   </ul>

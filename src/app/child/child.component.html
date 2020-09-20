@@ -1,5 +1,5 @@
 
         <li *ngFor="let task of taskListexChild">
           {{task}}
-          <button (click)="select(task)">emit</button>
+          <button type="button" class="btn btn-secondary"(click)="select(task)">emit</button>
         </li>
