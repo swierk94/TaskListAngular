@@ -1,7 +1,7 @@
-Wykonane zadania: {{taskDone.length}}
+Wykonane zadania: {{tasksDone.length}}
       <ul>
-        <li *ngFor="let task of taskDone">
+        <li *ngFor="let task of tasksDone">
           {{task}}
-          <button type="button" class="btn btn-warning" (click)="undone(task)">Niezrobione</button>
+          <button type="button" class="btn btn-warning" >Niezrobione</button>
         </li>
       </ul>

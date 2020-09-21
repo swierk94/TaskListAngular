@@ -1,5 +1,5 @@
+import { TaskService } from './../services/task.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
 @Component({
   selector: 'app-done-task',
   templateUrl: './done-task.component.html',
@@ -7,19 +7,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DoneTaskComponent  {
 
-  constructor() { }
+  tasksDone: Array<string> = [];
 
- @Input()
-taskDone: Array<string> = [];
-
-@Output()
-emitUndone = new EventEmitter<string>();
-
-undone(task: string)
-{
-  this.emitUndone.emit(task);
-  this.taskDone=this.taskDone.filter(e => e !== task);
-
+  constructor(private tasksService: TaskService)
+   {
+     this.tasksService.getTasksDoneObs().subscribe(
+     (tasks: Array<string> )=>
+    {
+     this.tasksDone = tasks;
+    });
 }
 
 }
