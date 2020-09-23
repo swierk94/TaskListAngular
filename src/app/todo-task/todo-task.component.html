@@ -3,8 +3,8 @@
   <p [ngStyle] = "{color: getColor()}">Zadania do wykonania: {{taskList.length}}</p>
   <ul>
     Lista zadań
-    <li *ngFor=" let task of taskList; let odd = odd" [ngClass]="{'odd-li': odd, 'last-li':taskList.length===1}">
-        {{task}}
+    <li appDate [date]="task.created" *ngFor=" let task of taskList; let odd = odd" [ngClass]="{'odd-li': odd, 'last-li':taskList.length===1}">
+        {{task.name | uppercase}}
         <button type="button" class="btn btn-danger"(click)="remove(task)">Usun</button>
         <button type="button" class="btn btn-success" (click)="done(task)">Zrobione</button>
     </li>

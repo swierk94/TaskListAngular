@@ -1,3 +1,4 @@
+import { Task } from './../model/task';
 import { TaskService } from './../services/task.service';
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { EventEmitter } from '@angular/core';
@@ -14,10 +15,10 @@ export class AddTaskComponent {
 newTask: string;
 
 
- //Tasks adding method
   add()
 {
-this.tasksService.add(this.newTask);
+const task: Task = { name: this.newTask, created: new Date()};
+this.tasksService.add(task);
 this.newTask = '';
 }
 

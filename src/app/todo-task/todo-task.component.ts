@@ -1,3 +1,4 @@
+import { Task } from './../model/task';
 import { TaskService } from './../services/task.service';
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 
@@ -8,12 +9,12 @@ import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 })
 export class TodoTaskComponent  {
 
-  taskList = [];
+  taskList: Array<Task> = [];
 
   constructor(private tasksService: TaskService)
   {
 
-this.tasksService.getTasksListObs().subscribe((tasks: Array<string>) =>{
+this.tasksService.getTasksListObs().subscribe((tasks: Array<Task>) =>{
 this.taskList = tasks;
 }
 );
@@ -21,12 +22,13 @@ this.taskList = tasks;
   }
 
 
-done(task: string)
+done(task: Task)
 {
+  task.end = new Date();
   this.tasksService.done(task);
 }
 
-remove(task: string)
+remove(task: Task)
 {
   this.tasksService.remove(task);
 
