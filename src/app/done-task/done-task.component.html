@@ -1,7 +1,7 @@
 Wykonane zadania: {{tasksDone.length}}
       <ul>
         <li appDate [date]="task.end" appChecked  *ngFor="let task of tasksDone">
-          {{task.name}}
+          {{task.name | transformTask: '  -  super!'}}
           <button type="button" class="btn btn-warning" >Niezrobione</button>
         </li>
       </ul>

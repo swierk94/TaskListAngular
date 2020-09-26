@@ -11,6 +11,8 @@ import { TodoTaskComponent } from './todo-task/todo-task.component';
 import { DoneTaskComponent } from './done-task/done-task.component';
 import { CheckedDirective } from './shared/checked.directive';
 import { DateDirective } from './shared/date.directive';
+import { TransformTaskPipe } from './shared/transform-task.pipe';
+import { SortNamePipe } from './shared/sortName.pipe';
 
 
 @NgModule({
@@ -21,12 +23,15 @@ import { DateDirective } from './shared/date.directive';
     TodoTaskComponent,
     DoneTaskComponent,
     CheckedDirective,
-    DateDirective
+    DateDirective,
+    TransformTaskPipe,
+    SortNamePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+
 
   ],
   providers: [TaskService],

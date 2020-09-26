@@ -15,7 +15,7 @@ export class TodoTaskComponent  {
   {
 
 this.tasksService.getTasksListObs().subscribe((tasks: Array<Task>) =>{
-this.taskList = tasks;
+this.taskList = tasks.slice();
 }
 );
 

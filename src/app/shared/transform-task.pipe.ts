@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'transform-task'
+  name: 'transformTask'
 })
 export class TransformTaskPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
+  transform(value: string, args: string = ''): any {
+    return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() + args;
   }
 
 }
