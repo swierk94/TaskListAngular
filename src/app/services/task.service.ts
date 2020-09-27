@@ -1,24 +1,21 @@
 import { Task } from './../model/task';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { FormArray } from '@angular/forms';
 
 @Injectable()
 export class TaskService {
 
-
-private taskList: Array<Task> = [];
-private taskDone: Array<Task> = [];
-
-
 private taskListObs = new BehaviorSubject<Array<Task>>([]);
-private taskDoneObs = new BehaviorSubject<Array<Task>>([]);
+
 
 constructor()
 {
-this.taskList = [{name: 'Zadanie 1', created: new Date()},
- {name: 'Zadanie 2', created: new Date()},
- {name: 'Zadanie3', created: new Date()}];
-this.taskListObs.next(this.taskList);
+ const taskList = [{name: 'Zadanie 1', created: new Date().toLocaleString(), isDone: false},
+ {name: 'Zadanie 2', created: new Date().toLocaleString(),  isDone: false},
+ {name: 'Zadanie3', created: new Date().toLocaleString(),  isDone: false},
+ {name: 'Zadanie 2', created: new Date().toLocaleString(), end:new Date().toLocaleString(), isDone: true}];
+this.taskListObs.next(taskList);
 }
 
 
@@ -26,28 +23,29 @@ this.taskListObs.next(this.taskList);
 
 remove(task: Task)
 {
-this.taskList = this.taskList.filter(e => e !== task);
-this.taskListObs.next(this.taskList);
+const list = this.taskListObs.getValue().filter(e => e !== task);
+this.taskListObs.next(list);
 
 }
 
 done(task: Task)
 {
-  this.taskDone.push(task);
-  this.remove(task);
-  this.taskDoneObs.next(this.taskDone);
+  task.end = new Date().toLocaleString();
+  task.isDone = true;
+  const list = this.taskListObs.getValue();
+  this.taskListObs.next(list);
+
 }
 
-undone(task: Task)
-{
-  this.taskDone=this.taskDone.filter(e => e !== task);
-  this.taskList.push(task);
-}
+
 
 add(task: Task)
 {
-  this.taskList.push(task);
-  this.taskListObs.next(this.taskList);
+  const list = this.taskListObs.getValue();
+  list.push(task);
+  this.taskListObs.next(list);
+
+
 }
 
 getTasksListObs(): Observable<Array<Task>>
@@ -55,9 +53,9 @@ getTasksListObs(): Observable<Array<Task>>
 return this.taskListObs.asObservable();
 }
 
-getTasksDoneObs(): Observable<Array<Task>>
-{
-  return this.taskDoneObs.asObservable();
-}
+// getTasksDoneObs(): Observable<Array<Task>>
+// {
+//   return this.taskDoneObs.asObservable();
+// }
 
 }

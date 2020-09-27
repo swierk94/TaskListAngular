@@ -12,10 +12,10 @@ export class DoneTaskComponent  {
 
   constructor(private tasksService: TaskService)
    {
-     this.tasksService.getTasksDoneObs().subscribe(
+     this.tasksService.getTasksListObs().subscribe(
      (tasks: Array<Task> )=>
     {
-     this.tasksDone = tasks;
+     this.tasksDone = tasks.filter(t => t.isDone === true);
     });
 }
 

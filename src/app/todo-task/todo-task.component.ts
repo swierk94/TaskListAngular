@@ -15,7 +15,7 @@ export class TodoTaskComponent  {
   {
 
 this.tasksService.getTasksListObs().subscribe((tasks: Array<Task>) =>{
-this.taskList = tasks.slice();
+this.taskList = tasks.filter(t=> t.isDone === false);
 }
 );
 
@@ -24,7 +24,6 @@ this.taskList = tasks.slice();
 
 done(task: Task)
 {
-  task.end = new Date();
   this.tasksService.done(task);
 }
 
